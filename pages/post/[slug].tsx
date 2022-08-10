@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { Header } from '../../components';
+import { Header, Post as Postit } from '../../components';
 import { Post } from '../../typing';
 import { client, urlFor } from '../../utils/client';
 
@@ -8,11 +8,10 @@ interface Props {
 }
 
 function Post({ post }: Props) {
-  console.log(post);
-
   return (
     <main>
       <Header />
+      <Postit post={post} />
     </main>
   );
 }
@@ -64,5 +63,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       post,
     },
+    revalidate: 60,
   };
 };
